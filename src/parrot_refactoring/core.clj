@@ -21,9 +21,21 @@
 (defrecord NorwegiaBlueParrot [voltage]
   Parrot
   (speed [_]
-    (let [maximum-speed 24.0 ]
+    (let [maximum-speed 24.0]
       (min maximum-speed (* voltage base-speed)))))
 
-(defrecord NailedParrot []
+(defrecord NailedNorwegiaBlueParrot []
   Parrot
   (speed [_] minimum-speed))
+
+(defn european []
+  (->EuropeanParrot))
+
+(defn african [num-coconuts]
+  (->AfricanParrot num-coconuts))
+
+(defn norwegian-blue-parrot [voltage]
+  (->NorwegiaBlueParrot voltage))
+
+(defn nailed-norwegian-blue-parrot []
+  (->NailedNorwegiaBlueParrot))
