@@ -23,13 +23,17 @@
 (defrecord NorwegiaBlueParrot [type voltage nailed]
   Parrot
   (speed [_]
-    (if nailed
-      0.0
-      (compute-base-speed-for-voltage voltage))))
+    (compute-base-speed-for-voltage voltage)))
+
+(defrecord NailedParrot []
+  Parrot
+  (speed [_] 0.0))
 
 (defn make [type num-coconuts voltage nailed]
-  (case type
-    :european-parrot (->EuropeanParrot type)
-    :african-parrot (->AfricanParrot type num-coconuts)
-    :norwegian-blue-parrot (->NorwegiaBlueParrot type voltage nailed)
-    (throw "Should be unreachable!")))
+  (if nailed
+    (->NailedParrot)
+    (case type
+      :european-parrot (->EuropeanParrot type)
+      :african-parrot (->AfricanParrot type num-coconuts)
+      :norwegian-blue-parrot (->NorwegiaBlueParrot type voltage nailed)
+      (throw "Should be unreachable!"))))
