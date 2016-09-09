@@ -4,9 +4,6 @@
 
 (def ^:private base-speed 12.0)
 
-(defn- compute-base-speed-for-voltage [voltage]
-  (min 24.0 (* voltage base-speed)))
-
 (defprotocol Parrot
   (speed [this]))
 
@@ -23,7 +20,7 @@
 (defrecord NorwegiaBlueParrot [voltage nailed]
   Parrot
   (speed [_]
-    (compute-base-speed-for-voltage voltage)))
+    (min 24.0 (* voltage base-speed))))
 
 (defrecord NailedParrot []
   Parrot
