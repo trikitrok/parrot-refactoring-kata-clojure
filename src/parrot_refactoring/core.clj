@@ -10,17 +10,17 @@
 (defprotocol Parrot
   (speed [this]))
 
-(defrecord EuropeanParrot [type]
+(defrecord EuropeanParrot []
   Parrot
   (speed [_]
     base-speed))
 
-(defrecord AfricanParrot [type num-coconuts]
+(defrecord AfricanParrot [num-coconuts]
   Parrot
   (speed [_]
     (max 0.0 (- base-speed (* load-factor num-coconuts)))))
 
-(defrecord NorwegiaBlueParrot [type voltage nailed]
+(defrecord NorwegiaBlueParrot [voltage nailed]
   Parrot
   (speed [_]
     (compute-base-speed-for-voltage voltage)))
@@ -33,7 +33,7 @@
   (if nailed
     (->NailedParrot)
     (case type
-      :european-parrot (->EuropeanParrot type)
-      :african-parrot (->AfricanParrot type num-coconuts)
-      :norwegian-blue-parrot (->NorwegiaBlueParrot type voltage nailed)
+      :european-parrot (->EuropeanParrot)
+      :african-parrot (->AfricanParrot num-coconuts)
+      :norwegian-blue-parrot (->NorwegiaBlueParrot voltage nailed)
       (throw "Should be unreachable!"))))
