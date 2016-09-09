@@ -1,7 +1,5 @@
 (ns parrot-refactoring.core)
 
-(def ^:private load-factor 9.0)
-
 (def ^:private base-speed 12.0)
 
 (defprotocol Parrot
@@ -15,7 +13,8 @@
 (defrecord AfricanParrot [num-coconuts]
   Parrot
   (speed [_]
-    (max 0.0 (- base-speed (* load-factor num-coconuts)))))
+    (let [load-factor 9.0]
+      (max 0.0 (- base-speed (* load-factor num-coconuts))))))
 
 (defrecord NorwegiaBlueParrot [voltage nailed]
   Parrot
