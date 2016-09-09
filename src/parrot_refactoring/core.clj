@@ -27,13 +27,6 @@
       0.0
       (compute-base-speed-for-voltage voltage))))
 
-(defn speed [parrot]
-  (case (:type parrot)
-    :european-parrot (speed parrot)
-    :african-parrot (speed parrot)
-    :norwegian-blue-parrot (speed parrot)
-    (throw "Should be unreachable!")))
-
 (defn make [type num-coconuts voltage nailed]
   (case type
     :european-parrot (->EuropeanParrot type)
