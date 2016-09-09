@@ -15,3 +15,9 @@
                              0.0
                              (compute-base-speed-for-voltage (:voltage parrot)))
     (throw "Should be unreachable!")))
+
+(defn make [type num-coconuts voltage nailed]
+  {:type type
+   :num-coconuts num-coconuts
+   :voltage voltage
+   :nailed nailed})
