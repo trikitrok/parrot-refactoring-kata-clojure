@@ -2,6 +2,8 @@
 
 (def ^:private base-speed 12.0)
 
+(def ^:private minimum-speed 0.0)
+
 (defprotocol Parrot
   (speed [this]))
 
@@ -14,7 +16,7 @@
   Parrot
   (speed [_]
     (let [load-factor 9.0]
-      (max 0.0 (- base-speed (* load-factor num-coconuts))))))
+      (max minimum-speed (- base-speed (* load-factor num-coconuts))))))
 
 (defrecord NorwegiaBlueParrot [voltage nailed]
   Parrot
@@ -23,7 +25,7 @@
 
 (defrecord NailedParrot []
   Parrot
-  (speed [_] 0.0))
+  (speed [_] minimum-speed))
 
 (defn make [type num-coconuts voltage nailed]
   (if nailed
