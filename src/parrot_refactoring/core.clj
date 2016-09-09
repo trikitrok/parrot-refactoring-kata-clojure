@@ -18,7 +18,7 @@
     (let [load-factor 9.0]
       (max minimum-speed (- base-speed (* load-factor num-coconuts))))))
 
-(defrecord NorwegiaBlueParrot [voltage nailed]
+(defrecord NorwegiaBlueParrot [voltage]
   Parrot
   (speed [_]
     (let [maximum-speed 24.0 ]
@@ -27,12 +27,3 @@
 (defrecord NailedParrot []
   Parrot
   (speed [_] minimum-speed))
-
-(defn make [type num-coconuts voltage nailed]
-  (if nailed
-    (->NailedParrot)
-    (case type
-      :european-parrot (->EuropeanParrot)
-      :african-parrot (->AfricanParrot num-coconuts)
-      :norwegian-blue-parrot (->NorwegiaBlueParrot voltage nailed)
-      (throw "Should be unreachable!"))))
